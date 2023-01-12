@@ -1,13 +1,16 @@
 import random
 
 # quiz introduction
-print("Welcome to Lucia's Python CS 135 Quiz! \n")
-name = input("Please type in your name: ")
-print("\nHi, " + name + "!")
-input("Hit ENTER to start: ")
+print("🌟 Welcome to Python CS 135 Quiz! 🌟\
+\n\n📝 This test contains 12 randomized questions about Racket (intermediate with lambda).\
+\n📚 Question types include multiple choice, true/false, and short answer.\
+\n🔁 Retake it more than once to practise with new sets of questions!\n")
+name = input("💻 Please type in your name: ")
+print("\n👋 Hi, " + name + "!")
+input("👀 Hit ENTER to start: ")
 
 
-# defining question/answer pairs
+# define class for prompt/answer pairs
 class Question:
 
     def __init__(self, prompt, answer):
@@ -15,6 +18,10 @@ class Question:
         self.answer = answer
 
 
+# create lists of question prompts
+# create lists of prompt/answer questions
+
+# multiple choice (mc) prompts
 mc_prompts = [
     "\nMultiple Choice: Define 'the generalization of similar expressions'.\
 \n a) Functions \n b) Equations \n c) Values \n d) None of the above \nAnswer: ",
@@ -43,6 +50,7 @@ mc_prompts = [
 \n a) Ada Augusta Byron \n b) Charles Babbage \n c) David Hilbert \n d) Alan Turing \nAnswer: "
 ]
 
+# multiple choice (mc) questions
 mc_questions = [
     Question(mc_prompts[0], "a"),
     Question(mc_prompts[1], "d"),
@@ -54,6 +62,7 @@ mc_questions = [
     Question(mc_prompts[7], "a")
 ]
 
+# true/false (tf) prompts
 tf_prompts = [
     "\nTrue (T) or False (F): Expressions combine values with operators and functions.\nAnswer: ",
     "\nTrue (T) or False (F): (or false (string=? “A” “AA”)) produces false.\nAnswer: ",
@@ -65,6 +74,7 @@ tf_prompts = [
     "\nTrue (T) or False (F): Functions can be consumed, produced, or both.\nAnswer: "
 ]
 
+# true/false (tf) questions
 tf_questions = [
     Question(tf_prompts[0], "T"),
     Question(tf_prompts[1], "T"),
@@ -76,6 +86,7 @@ tf_questions = [
     Question(tf_prompts[7], "T")
 ]
 
+# short answer (short) prompts
 short_prompts = [
     "\nShort Answer: What will (and (< 1 0) (/ 1 0)) produce?\nAnswer: ",
     "\nShort Answer: What comes after examples in the design recipe?\n",
@@ -89,6 +100,7 @@ and produces a list?\n",
     "\nShort Answer: Enter the full name of the person who invented Lisp, a LISt Processor.\n"
 ]
 
+# short answer (short) questions
 short_questions = [
     Question(short_prompts[0], "false"),
     Question(short_prompts[1], "contract"),
@@ -100,6 +112,7 @@ short_questions = [
     Question(short_prompts[7], "john mccarthy")
 ]
 
+# create list of random questions, 4 of each question type
 random_questions = random.sample(mc_questions, 4)
 random_tf = random.sample(tf_questions, 4)
 random_short = random.sample(short_questions, 4)
@@ -108,15 +121,16 @@ random_questions.extend(random_tf)
 random_questions.extend(random_short)
 
 
-# questions is a list of questions. not randomized.
-def run_test(questions):
+# function to run quiz on a list of questions, produce score
+def run_quiz(questions):
     score = 0
     for question in questions:
         answer = input(question.prompt)
         if answer.lower() == question.answer.lower():
             score += 1
-    print("\nYou got " + str(score) + "/" + str(len(questions)) + " correct. \
+    print("\n✏️ You got " + str(score) + "/" + str(len(questions)) + " correct. \
 Thank you for participating, " + name + "!")
 
 
-run_test(random_questions)
+# quiz function call
+run_quiz(random_questions)
